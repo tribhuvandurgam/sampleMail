@@ -1,0 +1,132 @@
+{
+  "appNotification" : {
+    "_id" : "wm-appErrorHandler-wm.NotificationVariable-1454664620943",
+    "name" : "appNotification",
+    "owner" : "App",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "class",
+      "value" : "Error",
+      "type" : "list"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "list"
+    } ],
+    "operation" : "toast"
+  },
+  "goToPage_Main" : {
+    "_id" : "wm-wm.NavigationVariable1389180517517",
+    "name" : "goToPage_Main",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "operation" : "gotoPage",
+    "pageName" : "Main"
+  },
+  "goToPage_newTest" : {
+    "_id" : "wm-goToPage_newTest-wm.NavigationVariable-1495798433074",
+    "name" : "goToPage_newTest",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ ],
+    "operation" : "gotoPage",
+    "pageName" : "newTest",
+    "dataSet" : [ ],
+    "pageTransitions" : "none"
+  },
+  "nvdestinationunknown" : {
+    "_id" : "wm-nvdestinationunknown-wm.NotificationVariable-1485291156296",
+    "name" : "nvdestinationunknown",
+    "owner" : "App",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "unkonwn",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "6000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Warning",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "top center",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
+  "sendEmailnew" : {
+    "_id" : "wm-sendEmailnew-wm.ServiceVariable-1495798574532",
+    "name" : "sendEmailnew",
+    "owner" : "App",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "MyMailService$EmailRequest.emailMessage",
+      "value" : "bind:\"new message with spcl char ńńńńń\""
+    }, {
+      "target" : "MyMailService$EmailRequest.emailSubject",
+      "value" : "bind:\"Test subject\""
+    }, {
+      "target" : "MyMailService$EmailRequest.password",
+      "value" : "bind:\"R@my@123\""
+    }, {
+      "target" : "MyMailService$EmailRequest.toEmailAddress",
+      "value" : "bind:\"ramyamendu94@gmail.com\""
+    }, {
+      "target" : "MyMailService$EmailRequest.userName",
+      "value" : "bind:\"ramyamendu94@gmail.com\""
+    }, {
+      "isList" : false,
+      "target" : "MyMailService$EmailRequest",
+      "value" : "{}",
+      "type" : "com.samplemail.mymailservice.MyMailService.EmailRequest"
+    } ],
+    "type" : "string",
+    "service" : "MyMailService",
+    "operation" : "sendEmail2",
+    "operationId" : "MyMailController_sendEmail2",
+    "operationType" : "post",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "MyMail"
+  },
+  "staticVariable1" : {
+    "_id" : "wm-staticVariable1-wm.Variable-1485290148215",
+    "name" : "staticVariable1",
+    "owner" : "App",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "dataValue" : "POST /2fa/1/pin?ncNeeded=true HTTP/1.1 Host: api.infobip.com Authorization: App c43e5ea47ebd006d8f6e760062df723b-d1f461e8-2b30-4913-8f3b-afdd5c8a00d4  {   \"applicationId\": \"HJ675435E3A6EA43432G5F37A635KJ8B\",   \"messageId\": \"0130269F44AFD07AEBC2FEFEB30398A0\",   \"from\": \"InfoSMS\",   \"to\": \"+97433252187\" }"
+    },
+    "type" : "string",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
+  "supportedLocale" : {
+    "_id" : "wm-wm.Variable1402640443182",
+    "name" : "supportedLocale",
+    "owner" : "App",
+    "category" : "wm.Variable",
+    "dataSet" : {
+      "en" : "English"
+    },
+    "type" : "string",
+    "isList" : false,
+    "saveInPhonegap" : false
+  }
+}

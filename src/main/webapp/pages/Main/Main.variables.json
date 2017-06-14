@@ -1,0 +1,95 @@
+{
+  "nvError" : {
+    "_id" : "wm-notificationVariable1-wm.NotificationVariable-1485216529779",
+    "name" : "nvError",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "Error",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Error",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
+  "nvSucess" : {
+    "_id" : "wm-nvSucess-wm.NotificationVariable-1485216572708",
+    "name" : "nvSucess",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "2000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
+  "svMail" : {
+    "_id" : "wm-svMail-wm.ServiceVariable-1485216302797",
+    "name" : "svMail",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "userName",
+      "value" : "bind:Widgets.form2.formWidgets.userName.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "password",
+      "value" : "bind:Widgets.form2.formWidgets.password.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "toEmailAddress",
+      "value" : "bind:Widgets.form2.formWidgets.toEmailAddress.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "emailSubject",
+      "value" : "bind:Widgets.form2.formWidgets.emailSubject.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "emailMessage",
+      "value" : "bind:Widgets.form2.formWidgets.emailMessage.datavalue",
+      "type" : "string"
+    } ],
+    "type" : "string",
+    "service" : "MyMailService",
+    "operation" : "sendEmail",
+    "operationId" : "MyMailController_sendEmail",
+    "operationType" : "get",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "Variables.nvSucess.invoke()",
+    "onError" : "Variables.nvError.invoke()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "MyMail"
+  }
+}
