@@ -51,7 +51,7 @@ public class MyMailService {
      * Methods in this class can declare HttpServletRequest, HttpServletResponse as input parameters to access the
      * caller's request/response objects respectively. These parameters will be injected when request is made (during API invocation).
      */
-    public String sendEmail(String userName, String password, String toEmailAddress,  String emailSubject, String emailMessage) {
+    public String sendEmail(String toEmailAddress,  String emailSubject, String emailMessage) {
         try {
             // Use javamail api, set parameters from registration.properties file
             // set the session properties
@@ -65,7 +65,7 @@ public class MyMailService {
  
             // Create email message
             MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(userName));
+            message.setFrom(new InternetAddress("praveen.noonsawath@wavemaker.com"));
             String[] recipientList = toEmailAddress.split(",");
             InternetAddress[] recipientAddress = new InternetAddress[recipientList.length];
             int counter = 0;
@@ -75,11 +75,11 @@ public class MyMailService {
             }
             message.setRecipients(Message.RecipientType.TO, recipientAddress);
             message.setSubject(emailSubject);
-            message.setContent(emailMessage, "text/html");
+            // message.setContent(emailMessage, "text/html");
             message.setText(emailMessage,"UTF-8");
             // Send smtp message
             Transport tr = session.getTransport("smtp");
-            tr.connect("smtp.gmail.com", 587, userName, password);
+            tr.connect("smtp.gmail.com", 587, "praveen.noonsawath@wavemaker.com", "Pramati@123");
             message.saveChanges();
             tr.sendMessage(message, message.getAllRecipients());
             tr.close();

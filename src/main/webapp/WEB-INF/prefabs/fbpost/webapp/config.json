@@ -1,0 +1,22 @@
+{
+    "group": "social",
+	"templateUrl": "/pages/Main/Main.html",
+	"controllerUrl": "/pages/Main/Main.js",
+	"variablesUrl": "/pages/Main/Main.variables.json",
+	"iconUrl": "/resources/images/imagelists/prefab-icon.png",
+	"resources": {
+		"styles": [
+			"/pages/Main/Main.css",
+		    "/resources/css/socialbyway.ui.v1.01-beta.min.css"
+		],
+		"scripts": [
+			"/resources/js/socialbyway.v1.01-beta.min.js",
+			"/resources/js/socialbyway.ui.v1.01-beta.min.js"
+		]
+	},
+	"properties": {
+		"appid": {
+			"type": "string"
+		}
+	}
+}

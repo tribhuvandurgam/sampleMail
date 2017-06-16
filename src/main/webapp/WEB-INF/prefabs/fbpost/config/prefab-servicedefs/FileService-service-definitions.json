@@ -1,0 +1,27 @@
+{
+  "fbpost_FileService_uploadFile_post" : {
+    "id" : "fbpost_FileService_uploadFile_post",
+    "service" : "FileService",
+    "controller" : null,
+    "operationType" : "uploadFile",
+    "type" : null,
+    "wmServiceOperationInfo" : {
+      "name" : "uploadFile",
+      "methodType" : "post",
+      "relativePath" : "/file/uploadFile",
+      "httpMethod" : null,
+      "parameters" : [ {
+        "name" : "files",
+        "parameterType" : "formData",
+        "type" : "file"
+      }, {
+        "name" : "relativePath",
+        "parameterType" : "query",
+        "type" : "java.lang.String"
+      } ],
+      "produces" : null,
+      "consumes" : [ "multipart/form-data" ],
+      "authorization" : null
+    }
+  }
+}

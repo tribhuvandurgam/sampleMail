@@ -11,6 +11,10 @@
   "type" : "PAGE",
   "params" : [ ]
 }, {
+  "name" : "Test_12",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
   "name" : "footer",
   "type" : "FOOTER",
   "params" : [ ]

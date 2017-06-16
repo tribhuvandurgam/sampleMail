@@ -1,0 +1,186 @@
+<style id="Main.css">
+.pic-upload-column {
+    vertical-align: middle;
+}
+.post-button {
+    position: static;
+}
+</style>
+<script id="Main.js">
+Application.$controller('FbpostController', ['$scope', '$rootScope', '$location', '$timeout', 'wmToaster',
+    function ($scope, $rootScope, $location, $timeout, wmToaster) {
+        "use strict";
+
+        /* Define the property change handler. This function will be triggered when there is a change in the prefab property */
+        function propertyChangeHandler(key, newVal) {
+            switch (key) {
+            case "appid":
+                $scope.appid = $rootScope[newVal] || newVal;
+                FBinit($scope.appid);
+                break;
+            }
+        }
+
+        /* register the property change handler */
+        $scope.propertyManager.add($scope.propertyManager.ACTIONS.CHANGE, propertyChangeHandler);
+
+        var promise;
+        $scope.model = {
+            name: "",
+            description: "",
+            message: "",
+            url: "http://",
+            startDate: new Date().toJSON().slice(0, 10)
+        };
+
+        function FBinit(appid) {
+            SBW.init({
+                "protocol": "http:",
+                "env": "www",
+                "proxyURL": "",
+                "callbackDirectory": "../callback",
+                "debug": "false",
+                "services": {
+                    "Facebook": {
+                        "appID": appid
+                    }
+                }
+            }, WM.noop);
+        }
+
+        function showMessage(type, desc) {
+            if (promise) {
+                promise();
+            }
+            $scope.msg = {
+                desc: desc,
+                type: type,
+                show: true
+            };
+            promise = $timeout(function () {
+                $scope.msg.show = false;
+            }, 5000);
+        }
+
+        function getValidJSON(content) {
+            if (!content) {
+                return false;
+            }
+            try {
+                /*obtaining json from editor content string*/
+                return JSON.parse(content);
+            } catch (e) {
+                /*terminating execution if new variable object is not valid json.*/
+                return false;
+            }
+        }
+
+        $scope.postToFB = function () {
+            $scope.loadingState = true;
+            SBW.api.postShare(['facebook'], {
+                message: $scope.model.message,
+                picture: $scope.uploadImageSrc,
+                link: $scope.model.url,
+                name: $scope.model.name,
+                caption: $scope.model.message,
+                description: $scope.model.description,
+                actions: {
+                    "name": "View",
+                    "link": $scope.model.url
+                }
+            }, function () {
+                $rootScope.$safeApply($scope, function () {
+                    $scope.loadingState = false;
+                    wmToaster.show("success", "Success", "Posted successfully to Facebook");
+                });
+            }, function (failed) {
+                $rootScope.$safeApply($scope, function () {
+                    $scope.loadingState = false;
+                    showMessage("warn", failed.message);
+                });
+            });
+        };
+
+        $scope.picUploadSuccess = function ($event, params) {
+            var uploadedFile = $scope.Widgets.picUpload.uploadedFiles[0];
+            if (uploadedFile) {
+                $scope.uploadImageSrc = uploadedFile.path;
+            }
+        };
+    }
+]);
+</script>
+<script id="Main.variables.json">
+var _MainPage_Variables_ ={
+  "supportedLocale" : {
+    "category" : "wm.Variable",
+    "isList" : false,
+    "_id" : "wm-wm.Variable1402640443182",
+    "saveInPhonegap" : false,
+    "dataBinding" : [ ],
+    "name" : "supportedLocale",
+    "owner" : "Page",
+    "type" : "string",
+    "dataSet" : {
+      "en" : "English"
+    }
+  },
+  "FileServiceUploadFile" : {
+    "isList" : false,
+    "inFlightBehavior" : "executeLast",
+    "serviceType" : "JavaService",
+    "startUpdate" : false,
+    "transformationRequired" : false,
+    "maxResults" : 20,
+    "operationId" : "fbpost_FileService_uploadFile_post",
+    "dataSet" : {
+      "dataValue" : ""
+    },
+    "operation" : "uploadFile",
+    "category" : "wm.ServiceVariable",
+    "autoUpdate" : true,
+    "_id" : "wm-FileServiceUploadFile-wm.ServiceVariable-1440406140580",
+    "dataBinding" : [ ],
+    "saveInPhonegap" : false,
+    "isDefault" : true,
+    "designMaxResults" : 10,
+    "owner" : "Page",
+    "service" : "FileService"
+  }
+}
+</script>
+<script id="Main.html" type="text/ng-template">
+<wm-page data-ng-controller="FbpostController" name="fbPostPrefab">
+    <wm-content name="fbPostView">
+        <wm-tile backgroundcolor="#f9f9f9" name="prefabPanel" bordercolor="#d3dae8" borderstyle="solid" bordertop="1" borderleft="1" borderright="1" borderbottom="1" paddingtop="2" paddingright="2" paddingleft="2" paddingbottom="2" paddingunit="em" height="100%">
+            <wm-spinner name="loadingstate" show="{{loadingState}}"></wm-spinner>
+            <wm-message name="message" show="{{msg.show}}" caption="{{msg.desc}}" type="{{msg.type}}" hide-close="true" paddingtop="8" paddingbottom="8" paddingright="8" paddingleft="8" paddingunit="px"></wm-message>
+            <wm-composite widget="text" name="campaignName">
+                <wm-label class="col-md-2" name="titleLabel" caption="Title"></wm-label>
+                <wm-text scopedatavalue="model.name" placeholder="Enter campaign name" height="30" name="title"></wm-text>
+            </wm-composite>
+            <wm-composite widget="text" name="campaignMessage">
+                <wm-label class="col-md-2" name="messageLabel" caption="Message"></wm-label>
+                <wm-text scopedatavalue="model.message" placeholder="Enter message" height="30" name="message"></wm-text>
+            </wm-composite>
+            <wm-composite widget="text" name="campaignStartDate">
+                <wm-label class="col-md-2" name="dateLabel" caption="Start Date"></wm-label>
+                <wm-date scopedatavalue="model.startDate" height="30" name="startDate" lineheight="16px"></wm-date>
+            </wm-composite>
+            <wm-composite widget="text" name="campaignURL">
+                <wm-label class="col-md-2" name="urlLabel" caption="URL"></wm-label>
+                <wm-text scopedatavalue="model.url" placeholder="Enter URL" height="30" name="url"></wm-text>
+            </wm-composite>
+            <wm-composite widget="text" name="campaignDesc">
+                <wm-label class="col-md-2" name="descLabel" caption="Description" lineheight="36px"></wm-label>
+                <wm-textarea scopedatavalue="model.description" placeholder="Enter campaign description" name="desc"></wm-textarea>
+            </wm-composite>
+            <wm-composite name="uploadPicPanel">
+                <wm-label class="col-md-2" name="uploadlabel" caption="Upload"></wm-label>
+                <wm-fileupload name="picUpload" service="FileService" operation="uploadFile" on-success="picUploadSuccess($event, params)"></wm-fileupload>
+            </wm-composite>
+            <wm-button class="post-button col-md-push-1" width="150" on-click="postToFB()" caption="Post to Facebook" name="postToFB" backgroundcolor="#4c69ba" color="#fff"></wm-button>
+        </wm-tile>
+    </wm-content>
+</wm-page>
+</script>

@@ -1,0 +1,37 @@
+{
+  "supportedLocale" : {
+    "category" : "wm.Variable",
+    "isList" : false,
+    "_id" : "wm-wm.Variable1402640443182",
+    "saveInPhonegap" : false,
+    "dataBinding" : [ ],
+    "name" : "supportedLocale",
+    "owner" : "Page",
+    "type" : "string",
+    "dataSet" : {
+      "en" : "English"
+    }
+  },
+  "FileServiceUploadFile" : {
+    "isList" : false,
+    "inFlightBehavior" : "executeLast",
+    "serviceType" : "JavaService",
+    "startUpdate" : false,
+    "transformationRequired" : false,
+    "maxResults" : 20,
+    "operationId" : "fbpost_FileService_uploadFile_post",
+    "dataSet" : {
+      "dataValue" : ""
+    },
+    "operation" : "uploadFile",
+    "category" : "wm.ServiceVariable",
+    "autoUpdate" : true,
+    "_id" : "wm-FileServiceUploadFile-wm.ServiceVariable-1440406140580",
+    "dataBinding" : [ ],
+    "saveInPhonegap" : false,
+    "isDefault" : true,
+    "designMaxResults" : 10,
+    "owner" : "Page",
+    "service" : "FileService"
+  }
+}
